@@ -9,5 +9,20 @@ class TaskListCreateAPIView(generics.ListCreateAPIView):
 	serializer_class = TaskSerializer
 
 class TaskUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Task.objects.all()
-    serializer_class = TaskCompletedSerializer
+	''' view for updating task completion and deleting a task'''
+	queryset = Task.objects.all()
+	serializer_class = TaskCompletedSerializer
+
+class TaskFilterAPIView(generics.ListAPIView):
+	'''View for filtering tasks by completion'''
+	serializer_class = TaskSerializer
+
+	def get_queryset(self):
+		queryset = Task.objects.all()
+		completed = self.request.query_params.get('completed')
+
+		if completed is not None:
+			completed = completed.lower() == 'true'
+			queryset = queryset.filter(completed=completed)
+
+		return queryset
