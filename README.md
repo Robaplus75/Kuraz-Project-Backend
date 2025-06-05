@@ -14,11 +14,14 @@ cd Kuraz-Project-Backend.git
 # Create virtual environment
 python -m venv env
 
-# Activate it
+# Setup the Environment
 source env/bin/activate       # On Linux/macOS
-# OR
+
+OR
+
 env\Scripts\activate          # On Windows
 
+# INSTALL AND RUN STUFF
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
@@ -28,21 +31,27 @@ python manage.py runserver
 All API endpoints are prefixed with: /api/
 
 🔹 GET /api/tasks/
+
 List all tasks.
 
 🔹 POST /api/tasks/
+
 Create a new task.
 
 🔹 PUT /api/tasks/<id>/
+
 Update a task to be completed by ID.
 
 🔹 DELETE /api/tasks/<id>/
+
 Delete a task by ID.
 
 🔹 GET /api/tasks/filter/?completed=true|false
+
 Filter tasks based on completion status.
 
 Examples:
 
 /api/tasks/filter/?completed=true
+
 /api/tasks/filter/?completed=false
